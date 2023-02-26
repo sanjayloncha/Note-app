@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Box, Text, Heading, GridItem, Grid } from "@chakra-ui/react";
+import { Box, Text, Heading, GridItem, Grid, Flex } from "@chakra-ui/react";
+import { DeleteIcon } from "@chakra-ui/icons";
 
 export default function Display() {
   let [taskData, setdata] = useState([]);
@@ -14,6 +15,13 @@ export default function Display() {
     let data = await fetch(url);
     let res = await data.json();
     setdata(res);
+  };
+
+  let remove = async (id) => {
+    console.log("remove", id);
+    await fetch(`http://localhost:8000/tasks/${id}`, {
+      method: "DELETE",
+    });
   };
 
   return (
@@ -40,6 +48,15 @@ export default function Display() {
               </Heading>
 
               <Text ml="5px">{item.body}</Text>
+              <Flex justifyContent="space-between" alignItems="center">
+                <Text ml="5px">created on : {item.created}</Text>
+                <lord-icon
+                  onClick={() => remove(item.id)}
+                  src="https://cdn.lordicon.com/gsqxdxog.json"
+                  trigger="hover"
+                  style={{ width: "40px" }}
+                ></lord-icon>
+              </Flex>
             </Box>
           </GridItem>
         );
