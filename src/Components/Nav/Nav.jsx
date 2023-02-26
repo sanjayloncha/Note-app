@@ -30,7 +30,6 @@ export default function Nav() {
     setAuth(false) ;
   }
   const { colorMode, toggleColorMode } = useColorMode();
-  // const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
       <Box bg={useColorModeValue("gray.300", "gray.900")} px={4}>

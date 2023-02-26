@@ -16,21 +16,43 @@ import {
   ModalFooter,
   ModalCloseButton,
   useDisclosure,
-  Textarea
+  Textarea,
 } from "@chakra-ui/react";
 import { AddIcon, SearchIcon } from "@chakra-ui/icons";
 export default function Home() {
-    let obj = {
-        title : "" ,
-        body :""
-    }
-  let [task, setTask] = useState([obj]);
+  let obj = {
+    title: "",
+    body: "",
+  };
+  let [task, setTask] = useState(obj);
   const { isOpen, onOpen, onClose } = useDisclosure();
   let handleClick = () => {
-    console.log(task);
+    if (task.title.trimStart() === "") {
+      alert("Please enter title");
+      return;
+    } else if (task.body.trimStart() === "") {
+      alert("Please enter body");
+      return;
+    } else {
+      sendData(task);
+      onClose();
+      setTask(obj) ;
+    }
   };
+
+  let sendData = async (task) => {
+    let url = `http://localhost:8000/tasks`;
+    await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(task),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+    );
+  };
+ 
   
-  let {title,body} = task ;
   return (
     <Box>
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -41,13 +63,18 @@ export default function Home() {
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel>Title</FormLabel>
-              <Input onChange={(e)=>setTask({...task,title:e.target.value})} name={title} placeholder="Enter Title..." />
+              <Input
+                onChange={(e) => setTask({ ...task, title: e.target.value })}
+                placeholder="Enter Title..."
+              />
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Body</FormLabel>
-              {/* <Input onChange={(e)=>setTask({...task,body:e.target.value})} name={body} placeholder="Enter Task..." /> */}
-              <Textarea placeholder='Here is a sample placeholder' />
+              <Textarea
+                onChange={(e) => setTask({ ...task, body: e.target.value })}
+                placeholder="Enter short description..."
+              />
             </FormControl>
           </ModalBody>
 
@@ -59,14 +86,13 @@ export default function Home() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-      <InputGroup>
+      <InputGroup w="60%" m="10px auto" >
         <InputLeftElement
           pointerEvents="none"
-          children={<SearchIcon color="gray.300" />}
+          children={<AddIcon color="gray.300" />}
         />
-        <Input type="tel" onClick={onOpen} placeholder="Enter note..." />
-        <InputRightElement width="4.5rem">
-        </InputRightElement>
+        <Input type="tel" onClick={onOpen}  placeholder="Add note..." />
+        <InputRightElement width="4.5rem"></InputRightElement>
       </InputGroup>
     </Box>
   );

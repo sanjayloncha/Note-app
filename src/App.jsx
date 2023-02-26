@@ -3,6 +3,7 @@ import Nav from "./Components/Nav/Nav";
 import Login from "./Components/Login/Login";
 import { Route,Routes } from "react-router-dom" ;
 import Home from "./Components/Home/Home";
+import Display from "./Components/Display/Display";
 
 function App() {
  
@@ -13,6 +14,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
       </Routes>
       <Home/>
+      <Display />
     </div>
   );
 }
