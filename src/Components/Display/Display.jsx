@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Box, Text, Heading, GridItem, Grid, Flex } from "@chakra-ui/react";
-import { DeleteIcon } from "@chakra-ui/icons";
 
 export default function Display({value}) {
   let [taskData, setdata] = useState([]);
@@ -10,14 +9,14 @@ export default function Display({value}) {
   }, [value]);
 
   let getData = async () => {
-    let url = `http://localhost:8000/tasks`;
+    let url = `https://note-app-data.onrender.com/note`;
     let data = await fetch(url);
     let res = await data.json();
     setdata(res);
   };
 
   let remove = async (id) => {
-    await fetch(`http://localhost:8000/tasks/${id}`, {
+    await fetch(`https://note-app-data.onrender.com/note/${id}`, {
       method: "DELETE",
     });
     getData();
@@ -36,12 +35,13 @@ export default function Display({value}) {
       {taskData.map((item) => {
         return (
             
-          <GridItem h="10" m="10px" height="auto" key={item.id}>
+          <GridItem h="10" m="10px" height="auto" >
             <Box
               bg="blackAlpha.200"
               boxShadow={"1xl"}
               rounded={"lg"}
               textAlign={"left"}
+              key={item.id}
             >
               <Heading ml="5px" fontSize={"2xl"} fontFamily={"body"}>
                 {item.title}

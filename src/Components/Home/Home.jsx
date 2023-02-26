@@ -59,7 +59,7 @@ export default function Home({fn}) {
   }
 
   let sendData = async (task) => {
-    let url = `http://localhost:8000/tasks`;
+    let url = `https://note-app-data.onrender.com/note` ;
     await fetch(url, {
       method: "POST",
       body: JSON.stringify(task),
