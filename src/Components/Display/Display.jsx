@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Box, Text, Heading, GridItem, Grid, Flex } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 
-export default function Display() {
+export default function Display({value}) {
   let [taskData, setdata] = useState([]);
-  let [flag, setFlag] = useState(0);
 
   useEffect(() => {
     getData();
-  }, [flag]);
+  }, [value]);
 
   let getData = async () => {
     let url = `http://localhost:8000/tasks`;
@@ -18,10 +17,10 @@ export default function Display() {
   };
 
   let remove = async (id) => {
-    console.log("remove", id);
     await fetch(`http://localhost:8000/tasks/${id}`, {
       method: "DELETE",
     });
+    getData();
   };
 
   return (
@@ -36,6 +35,7 @@ export default function Display() {
     >
       {taskData.map((item) => {
         return (
+            
           <GridItem h="10" m="10px" height="auto" key={item.id}>
             <Box
               bg="blackAlpha.200"

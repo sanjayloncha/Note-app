@@ -4,8 +4,11 @@ import Login from "./Components/Login/Login";
 import { Route,Routes } from "react-router-dom" ;
 import Home from "./Components/Home/Home";
 import Display from "./Components/Display/Display";
+import { useState } from "react" ;
 
 function App() {
+
+  let [count,setCount] = useState(0) ;
  
   return (
     <div className="App">
@@ -13,8 +16,8 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login/>}/>
       </Routes>
-      <Home/>
-      <Display />
+      <Home fn={setCount} />
+      <Display value={count} />
     </div>
   );
 }

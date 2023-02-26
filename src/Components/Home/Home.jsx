@@ -19,7 +19,8 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import { AddIcon, SearchIcon } from "@chakra-ui/icons";
-export default function Home() {
+export default function Home({fn}) {
+  // console.log(fn) ;
   let obj = {
     title: "",
     body: "",
@@ -29,7 +30,7 @@ export default function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   let handleChange = (e) => {
     let time = getTime();
-    setTask({ ...task, [e.target.name]: e.target.value, created : time });
+    setTask({ ...task, [e.target.name]: e.target.value, created: time });
   };
 
   let handleClick = () => {
@@ -42,12 +43,9 @@ export default function Home() {
     } else {
       onClose();
       sendData(task);
-      // console.log(task) ;
       setTask(obj);
     }
-
   };
-  // console.log(task);
 
   function getTime() {
     const date = new Date();
@@ -69,6 +67,7 @@ export default function Home() {
         "Content-Type": "application/json",
       },
     });
+    fn((prev)=>prev+1) ;
   };
 
   return (
