@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import {
   Input,
   Box,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
   Button,
   FormLabel,
   Modal,
@@ -16,10 +13,10 @@ import {
   ModalFooter,
   ModalCloseButton,
   useDisclosure,
+  Text,
   Textarea,
 } from "@chakra-ui/react";
-import { AddIcon, SearchIcon } from "@chakra-ui/icons";
-export default function Home({fn}) {
+export default function Home({ fn }) {
   // console.log(fn) ;
   let obj = {
     title: "",
@@ -59,7 +56,7 @@ export default function Home({fn}) {
   }
 
   let sendData = async (task) => {
-    let url = `https://note-app-data.onrender.com/note` ;
+    let url = `https://note-app-data.onrender.com/note`;
     await fetch(url, {
       method: "POST",
       body: JSON.stringify(task),
@@ -67,7 +64,7 @@ export default function Home({fn}) {
         "Content-Type": "application/json",
       },
     });
-    fn((prev)=>prev+1) ;
+    fn((prev) => prev + 1);
   };
 
   return (
@@ -107,14 +104,22 @@ export default function Home({fn}) {
           </ModalFooter>
         </ModalContent>
       </Modal>
-      <InputGroup w="60%" m="10px auto">
-        <InputLeftElement
-          pointerEvents="none"
-          children={<AddIcon color="gray.300" />}
-        />
-        <Input type="tel" onClick={onOpen} placeholder="Add note..." />
-        <InputRightElement width="4.5rem"></InputRightElement>
-      </InputGroup>
+
+      <Box
+        display="flex"
+        justify="center"
+        alignItems="center"
+        mt="20px"
+        ml={["10px", "20px", "40px", "50px"]}
+      >
+        <lord-icon
+          src="https://cdn.lordicon.com/ejxwvtlg.json"
+          trigger="hover"
+          style={{ width: "50px" }}
+          onClick={onOpen}
+        ></lord-icon>
+        <Text> Add Note </Text>
+      </Box>
     </Box>
   );
 }

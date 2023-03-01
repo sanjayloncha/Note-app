@@ -27,21 +27,23 @@ export default function Display({value}) {
       templateColumns={[
         "repeat(1, 1fr)",
         "repeat(2, 1fr)",
-        "repeat(3,1fr)",
+        "repeat(3, 1fr)",
         "repeat(4, 1fr)",
       ]}
+      w="90%"
+      m="20px auto"
       gap={6}
     >
       {taskData.map((item) => {
         return (
             
-          <GridItem h="10" m="10px" height="auto" >
+          <GridItem h="10" m="0px" height="auto" key={item.id} >
             <Box
               bg="blackAlpha.200"
               boxShadow={"1xl"}
               rounded={"lg"}
               textAlign={"left"}
-              key={item.id}
+              
             >
               <Heading ml="5px" fontSize={"2xl"} fontFamily={"body"}>
                 {item.title}

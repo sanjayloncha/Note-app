@@ -32,7 +32,7 @@ export default function Nav() {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <>
-      <Box bg={useColorModeValue("gray.300", "gray.900")} px={4}>
+      <Box bg={useColorModeValue("orange.300", "orange.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>
             <lord-icon
