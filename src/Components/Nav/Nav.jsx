@@ -36,16 +36,11 @@ export default function Nav() {
       <Box bg={useColorModeValue("yellow.200", "yellow.500")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>
-            {/* <lord-icon
+            <lord-icon
               src="https://cdn.lordicon.com/wxnxiano.json"
               trigger="morph"
+              colors="primary:#eee966,secondary:#918d10"
               style={{ width: "50px", height: "100px" }}
-            ></lord-icon> */}
-            <lord-icon
-              src="https://cdn.lordicon.com/ttioogfl.json"
-              trigger="morph"
-              style={{ width: "50px", height: "100px" }}
-              // style="width:250px;height:250px"
             ></lord-icon>
           </Box>
 

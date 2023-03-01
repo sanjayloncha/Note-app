@@ -17,13 +17,28 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 export default function Home({ fn }) {
-  // console.log(fn) ;
   let obj = {
     title: "",
     body: "",
     created: "",
   };
   let [task, setTask] = useState(obj);
+
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "April",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   let handleChange = (e) => {
     let time = getTime();
@@ -47,13 +62,15 @@ export default function Home({ fn }) {
   function getTime() {
     const date = new Date();
     const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const year = date.getFullYear();
+    const month = (date.getMonth());
     const hours = date.getHours();
     const minutes = date.getMinutes();
-    const seconds = date.getSeconds();
-    return `${year}/${month}/${day} ${hours}:${minutes}`;
+    const currentMonth = monthNames[month];
+    return `${day} ${currentMonth} ${hours}:${minutes}`;
   }
+
+  
+
 
   let sendData = async (task) => {
     let url = `https://note-app-data.onrender.com/note`;
