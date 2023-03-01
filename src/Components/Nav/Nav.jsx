@@ -42,7 +42,7 @@ export default function Nav() {
               style={{ width: "50px", height: "100px" }}
             ></lord-icon> */}
             <lord-icon
-              src="https://cdn.lordicon.com/hursldrn.json"
+              src="https://cdn.lordicon.com/ttioogfl.json"
               trigger="morph"
               style={{ width: "50px", height: "100px" }}
               // style="width:250px;height:250px"
