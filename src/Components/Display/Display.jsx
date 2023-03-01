@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Box, Text, Heading, GridItem, Grid, Flex } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Heading,
+  GridItem,
+  Grid,
+  Flex,
+  useColorModeValue,
+} from "@chakra-ui/react";
 
-export default function Display({value}) {
+export default function Display({ value }) {
   let [taskData, setdata] = useState([]);
 
   useEffect(() => {
@@ -14,6 +22,8 @@ export default function Display({value}) {
     let res = await data.json();
     setdata(res);
   };
+
+  let bg = useColorModeValue("yellow.200", "yellow.500") ;
 
   let remove = async (id) => {
     await fetch(`https://note-app-data.onrender.com/note/${id}`, {
@@ -33,17 +43,17 @@ export default function Display({value}) {
       w="90%"
       m="20px auto"
       gap={6}
+      
     >
       {taskData.map((item) => {
         return (
-            
-          <GridItem h="10" m="0px" height="auto" key={item.id} >
+          <GridItem h="10" m="0px" height="auto" key={item.id}>
             <Box
-              bg="blackAlpha.200"
+              bg={bg}
+              borderRadius="5px"
+              p="10px"
               boxShadow={"1xl"}
-              rounded={"lg"}
               textAlign={"left"}
-              
             >
               <Heading ml="5px" fontSize={"2xl"} fontFamily={"body"}>
                 {item.title}

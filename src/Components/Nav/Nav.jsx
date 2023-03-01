@@ -30,9 +30,10 @@ export default function Nav() {
     setAuth(false) ;
   }
   const { colorMode, toggleColorMode } = useColorMode();
+  let bg = useColorModeValue("yellow.200","yellow.500")
   return (
     <>
-      <Box bg={useColorModeValue("orange.300", "orange.900")} px={4}>
+      <Box bg={useColorModeValue("yellow.200", "yellow.500")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>
             <lord-icon
@@ -44,7 +45,7 @@ export default function Nav() {
 
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
-              <Button onClick={toggleColorMode}>
+              <Button onClick={toggleColorMode} bg={bg} >
                 {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>
 
