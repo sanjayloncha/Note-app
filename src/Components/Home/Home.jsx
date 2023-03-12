@@ -89,7 +89,7 @@ export default function Home({ fn }) {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Create your account</ModalHeader>
+          <ModalHeader>Create Note</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
