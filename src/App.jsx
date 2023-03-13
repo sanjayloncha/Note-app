@@ -18,6 +18,8 @@ function App() {
       </Routes>
       <Home fn={setCount} />
       <Display value={count} />
+      {/* <Route path="/" element={<Home />} /> */}
+      {/* <Route path="/" element={<Display value={count} />} /> */}
     </Box>
   );
 }

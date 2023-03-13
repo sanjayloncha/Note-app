@@ -23,10 +23,10 @@ export default function Nav() {
   let navigate = useNavigate();
   let login = () => {
     setAuth(true);
-    console.log("loggedIn");
     navigate("/");
   };
   let logout = () => {
+    navigate("/login");
     setAuth(false);
   };
   const { colorMode, toggleColorMode } = useColorMode();
