@@ -12,14 +12,15 @@ function App() {
 
   return (
     <Box className="App">
+      {/* <Login /> */}
       <Nav />
       <Routes>
         <Route path="/login" element={<Login />} />
+      {/* <Home fn={setCount} /> */}
+      {/* <Display value={count} /> */}
+      <Route path="/" element={<Home fn={setCount} />} />
+      <Route path="/" element={<Display value={count} />} />
       </Routes>
-      <Home fn={setCount} />
-      <Display value={count} />
-      {/* <Route path="/" element={<Home />} /> */}
-      {/* <Route path="/" element={<Display value={count} />} /> */}
     </Box>
   );
 }

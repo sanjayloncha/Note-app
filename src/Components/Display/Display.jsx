@@ -20,6 +20,7 @@ export default function Display({ value }) {
     let url = `https://note-app-data.onrender.com/note`;
     let data = await fetch(url);
     let res = await data.json();
+    console.log(res) ;
     setdata(res);
   };
 
@@ -76,3 +77,4 @@ export default function Display({ value }) {
     </Grid>
   );
 }
+
