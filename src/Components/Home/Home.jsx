@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Display from "../Display/Display";
 import {
   Input,
   Box,
@@ -17,6 +18,7 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 export default function Home({ fn }) {
+  let [count, setCount] = useState(0);
   let obj = {
     title: "",
     body: "",
@@ -46,6 +48,7 @@ export default function Home({ fn }) {
   };
 
   let handleClick = () => {
+
     if (task.title.trimStart() === "") {
       alert("Please enter title");
       return;
@@ -53,10 +56,13 @@ export default function Home({ fn }) {
       alert("Please enter body");
       return;
     } else {
+      setCount(count+1) ;
+      console.log(count) ;
       onClose();
       sendData(task);
       setTask(obj);
     }
+
   };
 
   function getTime() {
@@ -137,6 +143,9 @@ export default function Home({ fn }) {
         ></lord-icon>
         <Text> Add Note </Text>
       </Box>
+
+      <Display value={count} fn={setCount} />
+
     </Box>
   );
 }
