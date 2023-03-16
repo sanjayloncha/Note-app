@@ -15,7 +15,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Home fn={setCount} />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </Box>
   );

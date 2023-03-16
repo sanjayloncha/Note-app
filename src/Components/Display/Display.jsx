@@ -16,7 +16,6 @@ export default function Display({ value }) {
   }, [value]);
 
   let getData = async () => {
-    console.log( value ) ;
     let url = `https://note-app-data.onrender.com/note`;
     let data = await fetch(url);
     let res = await data.json();

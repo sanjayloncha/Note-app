@@ -17,7 +17,7 @@ import {
   Text,
   Textarea,
 } from "@chakra-ui/react";
-export default function Home({ fn }) {
+export default function Home() {
   let [count, setCount] = useState(0);
   let obj = {
     title: "",
@@ -56,8 +56,6 @@ export default function Home({ fn }) {
       alert("Please enter body");
       return;
     } else {
-      setCount(count+1) ;
-      console.log(count) ;
       onClose();
       sendData(task);
       setTask(obj);
@@ -87,7 +85,7 @@ export default function Home({ fn }) {
         "Content-Type": "application/json",
       },
     });
-    fn((prev) => prev + 1);
+    setCount(count+1) ;
   };
 
   return (
