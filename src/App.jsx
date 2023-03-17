@@ -8,8 +8,6 @@ import { useState } from "react";
 import { Box } from "@chakra-ui/react";
 
 function App() {
-  let [count, setCount] = useState(0);
-
   return (
     <Box className="App">
       <Nav />
