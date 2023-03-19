@@ -21,7 +21,6 @@ export default function Login() {
   const navigate = useNavigate() ;
   const handleChange = ()=>{
     navigate("/")
-    console.log("hello !")
   }
 
   return (
@@ -75,3 +74,5 @@ export default function Login() {
     </Flex>
   )
 }
+
+
