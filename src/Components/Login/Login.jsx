@@ -20,7 +20,8 @@ import {
 export default function Login() {
   const navigate = useNavigate() ;
   const handleChange = ()=>{
-    navigate("/")
+    localStorage.setItem("userAuth",JSON.stringify("true")) ;
+    navigate("/") 
   }
 
   return (

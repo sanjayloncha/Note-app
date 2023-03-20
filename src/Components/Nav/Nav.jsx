@@ -19,15 +19,12 @@ import {
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 export default function Nav() {
-  let [auth, setAuth] = useState(false);
   let navigate = useNavigate();
-  let login = () => {
-    setAuth(true);
-    navigate("/");
-  };
+  const auth = JSON.parse(localStorage.getItem("userAuth")) ;
+  
   let logout = () => {
+    localStorage.setItem("userAuth",JSON.stringify("false")) ;
     navigate("/login");
-    setAuth(false);
   };
   const { colorMode, toggleColorMode } = useColorMode();
   let bg = useColorModeValue("yellow.200", "yellow.500");
@@ -50,7 +47,7 @@ export default function Nav() {
                 {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>
 
-              {auth ? (
+              {auth === "true" ? (
                 <Menu>
                   <MenuButton
                     as={Button}
@@ -87,9 +84,7 @@ export default function Nav() {
                     <MenuItem onClick={logout}>Logout</MenuItem>
                   </MenuList>
                 </Menu>
-              ) : (
-                <Button onClick={login}>Login</Button>
-              )}
+              ) : null}
             </Stack>
           </Flex>
         </Flex>
