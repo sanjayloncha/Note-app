@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -27,16 +27,16 @@ export default function Nav() {
     navigate("/login");
   };
   const { colorMode, toggleColorMode } = useColorMode();
-  let bg = useColorModeValue("yellow.200", "yellow.500");
+  let bg = useColorModeValue("#bae6fd", "#0c4a6e");
   return (
     <>
-      <Box bg={useColorModeValue("yellow.200", "yellow.500")} px={4}>
+      <Box bg={bg} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>
             <lord-icon
               src="https://cdn.lordicon.com/wxnxiano.json"
               trigger="morph"
-              colors="primary:#eee966,secondary:#918d10"
+              colors="primary:#E9F3FB,secondary:#84A6D3"
               style={{ width: "50px", height: "100px" }}
             ></lord-icon>
           </Box>

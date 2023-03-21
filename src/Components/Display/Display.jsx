@@ -22,7 +22,8 @@ export default function Display({ value }) {
     setdata(res);
   };
 
-  let bg = useColorModeValue("yellow.200", "yellow.500") ;
+  const bg = useColorModeValue("#bae6fd", "#0c4a6e") ;
+  const color = useColorModeValue("black","white") ;
 
   let remove = async (id) => {
     await fetch(`https://note-app-data.onrender.com/note/${id}`, {
@@ -49,6 +50,8 @@ export default function Display({ value }) {
           <GridItem h="10" m="0px" height="auto" key={item.id}>
             <Box
               bg={bg}
+              // color={useColorModeValue('white', 'black')}>
+              color={color}
               borderRadius="5px"
               p="10px"
               boxShadow={"1xl"}

@@ -60,11 +60,12 @@ export default function Login() {
                 <Link color={'blue.400'}>Forgot password?</Link>
               </Stack>
               <Button
-                bg={'blue.400'}
+                bg={'#84A6D3'}
                 color={'white'}
                 onClick={handleChange}
                 _hover={{
-                  bg: 'blue.500',
+                  bg: '#E9F3FB',
+                  color:"#84A6D3"
                 }}>
                 Sign in
               </Button>
