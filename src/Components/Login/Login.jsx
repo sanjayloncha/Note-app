@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 
 import {
   Flex,
@@ -9,7 +9,6 @@ import {
   Input,
   Checkbox,
   Stack,
-  Link,
   Button,
   Heading,
   Text,
@@ -32,7 +31,7 @@ export default function Login() {
       bg={useColorModeValue('gray.50', 'gray.800')}>
       <Stack spacing={8} mx={'auto'} maxW={'lg'} >
         <Stack align={'center'}>
-          <Heading fontSize={['3xl','4xl']}>Sign in to your account</Heading>
+          <Heading fontSize={['3xl','4xl']}>Log in to your account</Heading>
           <Text fontSize={'lg'} color={'gray.600'}>
             to create your own <Link color={'blue.400'}>notes</Link> ✌️
           </Text>
@@ -69,6 +68,11 @@ export default function Login() {
                 }}>
                 Login
               </Button>
+            </Stack>
+            <Stack pt={6}>
+              <Text align={"center"}>
+                Don't have an account? <Link to="/" color={"blue.400"}>SignUp</Link>
+              </Text>
             </Stack>
           </Stack>
         </Box>

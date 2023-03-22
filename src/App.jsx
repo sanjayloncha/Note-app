@@ -10,12 +10,12 @@ import SignIn from "./Components/SignIn/SignIn";
 function App() {
   return (
     <Box className="App">
-      {/* <Nav />
+      <Nav />
       <Routes>
+        <Route path="/" element={<SignIn />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-      </Routes> */}
-      <SignIn/>
+        <Route path="/home" element={<Private> <Home /> </Private>} />
+      </Routes>
     </Box>
   );
 }

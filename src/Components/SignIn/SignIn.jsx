@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import { Link } from "react-router-dom" ;
 import {
   Flex,
   Box,
@@ -13,7 +14,6 @@ import {
   Heading,
   Text,
   useColorModeValue,
-  Link,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
@@ -28,7 +28,7 @@ export default function SignIn() {
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
-          <Heading fontSize={"4xl"} textAlign={"center"}>
+          <Heading fontSize={['3xl','4xl']} textAlign={"center"}>
             Sign up
           </Heading>
           <Text fontSize={"lg"} color={"gray.600"}>
@@ -79,7 +79,6 @@ export default function SignIn() {
             <Stack spacing={10} pt={2}>
               <Button
                 loadingText="Submitting"
-                size="lg"
                 bg={"blue.400"}
                 color={"white"}
                 _hover={{
@@ -89,9 +88,9 @@ export default function SignIn() {
                 Sign up
               </Button>
             </Stack>
-            <Stack pt={6}>
+            <Stack >
               <Text align={"center"}>
-                Already a user? <Link color={"blue.400"}>Login</Link>
+                Already a user? <Link to="/login" color={"blue.400"}>Login</Link>
               </Text>
             </Stack>
           </Stack>
