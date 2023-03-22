@@ -21,7 +21,7 @@ export default function Login() {
   const navigate = useNavigate() ;
   const handleChange = ()=>{
     localStorage.setItem("userAuth",JSON.stringify("true")) ;
-    navigate("/") 
+    navigate("/home") 
   }
 
   return (
@@ -30,9 +30,9 @@ export default function Login() {
       align={'center'}
       justify={'center'}
       bg={useColorModeValue('gray.50', 'gray.800')}>
-      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+      <Stack spacing={8} mx={'auto'} maxW={'lg'} >
         <Stack align={'center'}>
-          <Heading fontSize={'4xl'}>Sign in to your account</Heading>
+          <Heading fontSize={['3xl','4xl']}>Sign in to your account</Heading>
           <Text fontSize={'lg'} color={'gray.600'}>
             to create your own <Link color={'blue.400'}>notes</Link> ✌️
           </Text>
@@ -67,7 +67,7 @@ export default function Login() {
                   bg: '#E9F3FB',
                   color:"#84A6D3"
                 }}>
-                Sign in
+                Login
               </Button>
             </Stack>
           </Stack>
