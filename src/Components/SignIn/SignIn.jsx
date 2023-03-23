@@ -1,5 +1,5 @@
-import React,{useState} from "react";
-import { Link } from "react-router-dom" ;
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Flex,
   Box,
@@ -18,16 +18,49 @@ import {
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
 export default function SignIn() {
-    const [showPassword, setShowPassword] = useState(false);
+  const obj = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  };
+  const [userData, setuserData] = useState(obj);
+  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate() ;
+  const handleSignUp = () => {
+    if (userData.firstName.length === 0) {
+      alert("Enter first name");
+    } else if (userData.lastName.length === 0) {
+      alert("Enter last name");
+    } else if (userData.email.length === 0) {
+      alert("Enter email");
+    } else if (userData.password.length === 0) {
+      alert("Enter password");
+    } else {
+      sendUserData(userData);
+      navigate("/logIn");
+    }
+  };
+  const sendUserData = async (data) => {
+    console.log(data);
+    const url = `https://note-app-data.onrender.com/users`;
+    await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
   return (
     <Flex
       align={"center"}
       justify={"center"}
       bg={useColorModeValue("gray.50", "gray.800")}
     >
-      <Stack spacing={4} mx={"auto"} maxW={"lg"} p={6} >
+      <Stack spacing={4} mx={"auto"} maxW={"lg"} p={6}>
         <Stack align={"center"}>
-          <Heading fontSize={['3xl','4xl']} textAlign={"center"}>
+          <Heading fontSize={["3xl", "4xl"]} textAlign={"center"}>
             Sign up
           </Heading>
           <Text fontSize={"lg"} color={"gray.600"}>
@@ -45,24 +78,44 @@ export default function SignIn() {
               <Box>
                 <FormControl id="firstName" isRequired>
                   <FormLabel>First Name</FormLabel>
-                  <Input type="text" />
+                  <Input
+                    type="text"
+                    onChange={(e) =>
+                      setuserData({ ...userData, firstName: e.target.value })
+                    }
+                  />
                 </FormControl>
               </Box>
               <Box>
                 <FormControl id="lastName">
                   <FormLabel>Last Name</FormLabel>
-                  <Input type="text" />
+                  <Input
+                    type="text"
+                    onChange={(e) =>
+                      setuserData({ ...userData, lastName: e.target.value })
+                    }
+                  />
                 </FormControl>
               </Box>
             </HStack>
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input
+                type="email"
+                onChange={(e) =>
+                  setuserData({ ...userData, email: e.target.value })
+                }
+              />
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
-                <Input type={showPassword ? "text" : "password"} />
+                <Input
+                  type={showPassword ? "text" : "password"}
+                  onChange={(e) =>
+                    setuserData({ ...userData, password: e.target.value })
+                  }
+                />
                 <InputRightElement h={"full"}>
                   <Button
                     variant={"ghost"}
@@ -77,6 +130,7 @@ export default function SignIn() {
             </FormControl>
             <Stack spacing={10} pt={2}>
               <Button
+                onClick={handleSignUp}
                 loadingText="Submitting"
                 bg={"blue.400"}
                 color={"white"}
@@ -87,9 +141,12 @@ export default function SignIn() {
                 Sign up
               </Button>
             </Stack>
-            <Stack >
+            <Stack>
               <Text align={"center"}>
-                Already a user? <Link to="/logIn" color={"blue.400"}>Login</Link>
+                Already a user?{" "}
+                <Link to="/logIn" color={"blue.400"}>
+                  Login
+                </Link>
               </Text>
             </Stack>
           </Stack>

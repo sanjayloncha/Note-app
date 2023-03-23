@@ -10,22 +10,22 @@ import {
 } from "@chakra-ui/react";
 
 export default function Display({ value }) {
-  let [taskData, setdata] = useState([]);
+  const [taskData, setdata] = useState([]);
   useEffect(() => {
     getData();
   }, [value]);
 
-  let getData = async () => {
-    let url = `https://note-app-data.onrender.com/note`;
-    let data = await fetch(url);
-    let res = await data.json();
+  const getData = async () => {
+    const url = `https://note-app-data.onrender.com/note`;
+    const data = await fetch(url);
+    const res = await data.json();
     setdata(res);
   };
 
   const bg = useColorModeValue("#bae6fd", "#0c4a6e") ;
   const color = useColorModeValue("black","white") ;
 
-  let remove = async (id) => {
+  const remove = async (id) => {
     await fetch(`https://note-app-data.onrender.com/note/${id}`, {
       method: "DELETE",
     });

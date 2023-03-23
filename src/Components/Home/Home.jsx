@@ -18,13 +18,13 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 export default function Home() {
-  let [count, setCount] = useState(0);
-  let obj = {
+  const [count, setCount] = useState(0);
+  const obj = {
     title: "",
     body: "",
     created: "",
   };
-  let [task, setTask] = useState(obj);
+  const [task, setTask] = useState(obj);
 
   const monthNames = [
     "Jan",
@@ -42,12 +42,12 @@ export default function Home() {
   ];
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  let handleChange = (e) => {
-    let time = getTime();
+  const handleChange = (e) => {
+    const time = getTime();
     setTask({ ...task, [e.target.name]: e.target.value, created: time });
   };
 
-  let handleClick = () => {
+  const handleClick = () => {
 
     if (task.title.trimStart() === "") {
       alert("Please enter title");
@@ -76,8 +76,8 @@ export default function Home() {
   
 
 
-  let sendData = async (task) => {
-    let url = `https://note-app-data.onrender.com/note`;
+  const sendData = async (task) => {
+    const url = `https://note-app-data.onrender.com/note`;
     await fetch(url, {
       method: "POST",
       body: JSON.stringify(task),

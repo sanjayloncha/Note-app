@@ -1,4 +1,3 @@
-
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -19,15 +18,17 @@ import {
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 export default function Nav() {
-  let navigate = useNavigate();
-  const auth = JSON.parse(localStorage.getItem("userAuth")) ;
-  
-  let logout = () => {
-    localStorage.setItem("userAuth",JSON.stringify("false")) ;
+  const navigate = useNavigate();
+  const auth = JSON.parse(localStorage.getItem("userAuth"));
+  const userName = JSON.parse(localStorage.getItem("userData"));
+  console.log(userName) ;
+  const { firstName } = userName ;
+  const logout = () => {
+    localStorage.setItem("userAuth", JSON.stringify("false"));
     navigate("/login");
   };
   const { colorMode, toggleColorMode } = useColorMode();
-  let bg = useColorModeValue("#bae6fd", "#0c4a6e");
+  const bg = useColorModeValue("#bae6fd", "#0c4a6e");
   return (
     <>
       <Box bg={bg} px={4}>
@@ -75,7 +76,7 @@ export default function Nav() {
                     </Center>
                     <br />
                     <Center>
-                      <p>Username</p>
+                      <p>{firstName}</p>
                     </Center>
                     <br />
                     <MenuDivider />
