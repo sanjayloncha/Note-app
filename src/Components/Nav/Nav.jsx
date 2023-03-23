@@ -20,9 +20,9 @@ import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 export default function Nav() {
   const navigate = useNavigate();
   const auth = JSON.parse(localStorage.getItem("userAuth"));
+
   const userName = JSON.parse(localStorage.getItem("userData"));
-  console.log(userName) ;
-  const { firstName } = userName ;
+
   const logout = () => {
     localStorage.setItem("userAuth", JSON.stringify("false"));
     navigate("/login");
@@ -76,7 +76,7 @@ export default function Nav() {
                     </Center>
                     <br />
                     <Center>
-                      <p>{firstName}</p>
+                      <p>user</p>
                     </Center>
                     <br />
                     <MenuDivider />

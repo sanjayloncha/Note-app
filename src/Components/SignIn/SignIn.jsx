@@ -27,7 +27,8 @@ export default function SignIn() {
   const [userData, setuserData] = useState(obj);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate() ;
-  const handleSignUp = () => {
+
+  const handleSignUp = async() => {
     if (userData.firstName.length === 0) {
       alert("Enter first name");
     } else if (userData.lastName.length === 0) {
@@ -37,13 +38,27 @@ export default function SignIn() {
     } else if (userData.password.length === 0) {
       alert("Enter password");
     } else {
+    const url = `https://note-app-data.onrender.com/users`;
+    const data = await fetch(url);
+    const res = await data.json();
+    const valid = res.filter((item) => {
+      if (item.email === userData.email) {
+        alert("user exists!")
+        navigate("/logIn");
+        return item;
+      }
+    });
+    if(Object.keys(valid).length === 0){
       sendUserData(userData);
       navigate("/logIn");
     }
+    setuserData(obj) ;
+    }
   };
+  const {firstName,lastName,email,password} = userData ;
   const sendUserData = async (data) => {
     console.log(data);
-    const url = `https://note-app-data.onrender.com/users`;
+    const url = `https://note-app-data.onrender.com/users` ;
     await fetch(url, {
       method: "POST",
       body: JSON.stringify(data),
@@ -52,6 +67,7 @@ export default function SignIn() {
       },
     });
   };
+
   return (
     <Flex
       align={"center"}
@@ -80,6 +96,7 @@ export default function SignIn() {
                   <FormLabel>First Name</FormLabel>
                   <Input
                     type="text"
+                    value={firstName}
                     onChange={(e) =>
                       setuserData({ ...userData, firstName: e.target.value })
                     }
@@ -91,6 +108,7 @@ export default function SignIn() {
                   <FormLabel>Last Name</FormLabel>
                   <Input
                     type="text"
+                    value={lastName}
                     onChange={(e) =>
                       setuserData({ ...userData, lastName: e.target.value })
                     }
@@ -102,6 +120,7 @@ export default function SignIn() {
               <FormLabel>Email address</FormLabel>
               <Input
                 type="email"
+                value={email}
                 onChange={(e) =>
                   setuserData({ ...userData, email: e.target.value })
                 }
@@ -112,6 +131,7 @@ export default function SignIn() {
               <InputGroup>
                 <Input
                   type={showPassword ? "text" : "password"}
+                  value={password}
                   onChange={(e) =>
                     setuserData({ ...userData, password: e.target.value })
                   }
@@ -143,7 +163,7 @@ export default function SignIn() {
             </Stack>
             <Stack>
               <Text align={"center"}>
-                Already a user?{" "}
+                Already have an account?{" "}
                 <Link to="/logIn" color={"blue.400"}>
                   Login
                 </Link>

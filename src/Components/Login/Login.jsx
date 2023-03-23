@@ -28,9 +28,7 @@ export default function Login() {
     } else if (userData.password.length === 0) {
       alert("Enter password");
     } else {
-      // console.log(userData);
       getUserData();
-      // setuserData(obj);
     }
   };
 
@@ -40,16 +38,15 @@ export default function Login() {
     const res = await data.json();
     const valid = res.filter((item) => {
       if (item.email === userData.email) {
-        console.log(item);
         localStorage.setItem("userAuth", JSON.stringify("true"));
         localStorage.setItem("userData", JSON.stringify(item));
-        return true ;
+        navigate("/home");
+        return item;
       }
     });
-    if(valid.length !== 0){
-      navigate("/") ;
-    }else{
-      alert("In valid credentials") ;
+
+    if (Object.keys(valid).length === 0) {
+      alert("In valid credentials");
     }
   };
 
@@ -120,7 +117,7 @@ export default function Login() {
             <Stack pt={4}>
               <Text align={"center"}>
                 Don't have an account?{" "}
-                <Link to="/signIn" color={"blue.400"}>
+                <Link to="/" color={"blue.400"}>
                   SignUp
                 </Link>
               </Text>

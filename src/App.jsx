@@ -12,8 +12,8 @@ function App() {
     <Box className="App">
       <Nav />
       <Routes>
-        <Route path="/" element={<Private> <Home /> </Private>} />
-        <Route path="/signIn" element={<SignIn />} />
+        <Route path="/" element={<SignIn />} />
+        <Route path="/home" element={<Private> <Home /> </Private>} />
         <Route path="/logIn" element={<LogIn />} />
       </Routes>
     </Box>
