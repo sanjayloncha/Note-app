@@ -21,12 +21,11 @@ export default function SignIn() {
     const [showPassword, setShowPassword] = useState(false);
   return (
     <Flex
-      minH={"90vh"}
       align={"center"}
       justify={"center"}
       bg={useColorModeValue("gray.50", "gray.800")}
     >
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+      <Stack spacing={4} mx={"auto"} maxW={"lg"} p={6} >
         <Stack align={"center"}>
           <Heading fontSize={['3xl','4xl']} textAlign={"center"}>
             Sign up
@@ -41,7 +40,7 @@ export default function SignIn() {
           boxShadow={"lg"}
           p={8}
         >
-          <Stack spacing={4}>
+          <Stack spacing={3}>
             <HStack>
               <Box>
                 <FormControl id="firstName" isRequired>
@@ -90,7 +89,7 @@ export default function SignIn() {
             </Stack>
             <Stack >
               <Text align={"center"}>
-                Already a user? <Link to="/login" color={"blue.400"}>Login</Link>
+                Already a user? <Link to="/logIn" color={"blue.400"}>Login</Link>
               </Text>
             </Stack>
           </Stack>

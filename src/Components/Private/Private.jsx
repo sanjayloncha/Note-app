@@ -1,12 +1,10 @@
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 export default function Private({children}) {
-    const navigate = useNavigate() ;
     const auth = JSON.parse(localStorage.getItem("userAuth")) ;
-    console.log(auth) ;
-    if(auth){
+    if(auth === "true"){
         return children ;
     }else{
-        return navigate("/login") ;
+        return <Navigate to="/logIn" />
     }
 }

@@ -12,9 +12,9 @@ function App() {
     <Box className="App">
       <Nav />
       <Routes>
-        <Route path="/" element={<SignIn />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<Private> <Home /> </Private>} />
+        <Route path="/" element={<Private> <Home /> </Private>} />
+        <Route path="/signIn" element={<SignIn />} />
+        <Route path="/logIn" element={<Login />} />
       </Routes>
     </Box>
   );

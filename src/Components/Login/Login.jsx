@@ -20,16 +20,16 @@ export default function Login() {
   const navigate = useNavigate() ;
   const handleChange = ()=>{
     localStorage.setItem("userAuth",JSON.stringify("true")) ;
-    navigate("/home") 
+    navigate("/") 
   }
 
   return (
     <Flex
-      minH={'100vh'}
+      mt={8}
       align={'center'}
       justify={'center'}
       bg={useColorModeValue('gray.50', 'gray.800')}>
-      <Stack spacing={8} mx={'auto'} maxW={'lg'} >
+      <Stack spacing={4} mx={'auto'} maxW={'lg'} >
         <Stack align={'center'}>
           <Heading fontSize={['3xl','4xl']}>Log in to your account</Heading>
           <Text fontSize={'lg'} color={'gray.600'}>
@@ -40,8 +40,8 @@ export default function Login() {
           rounded={'lg'}
           bg={useColorModeValue('white', 'gray.700')}
           boxShadow={'lg'}
-          p={8}>
-          <Stack spacing={4}>
+          p={6}>
+          <Stack spacing={3}>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
               <Input type="email" />
@@ -50,7 +50,7 @@ export default function Login() {
               <FormLabel>Password</FormLabel>
               <Input type="password" />
             </FormControl>
-            <Stack spacing={10}>
+            <Stack spacing={8}>
               <Stack
                 direction={{ base: 'column', sm: 'row' }}
                 align={'start'}
@@ -69,9 +69,9 @@ export default function Login() {
                 Login
               </Button>
             </Stack>
-            <Stack pt={6}>
+            <Stack pt={4}>
               <Text align={"center"}>
-                Don't have an account? <Link to="/" color={"blue.400"}>SignUp</Link>
+                Don't have an account? <Link to="/signIn" color={"blue.400"}>SignUp</Link>
               </Text>
             </Stack>
           </Stack>
