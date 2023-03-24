@@ -26,9 +26,9 @@ export default function SignIn() {
   };
   const [userData, setuserData] = useState(obj);
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate() ;
+  const navigate = useNavigate();
 
-  const handleSignUp = async() => {
+  const handleSignUp = async () => {
     if (userData.firstName.length === 0) {
       alert("Enter first name");
     } else if (userData.lastName.length === 0) {
@@ -38,27 +38,27 @@ export default function SignIn() {
     } else if (userData.password.length === 0) {
       alert("Enter password");
     } else {
-    const url = `https://note-app-data.onrender.com/users`;
-    const data = await fetch(url);
-    const res = await data.json();
-    const valid = res.filter((item) => {
-      if (item.email === userData.email) {
-        alert("user exists!")
+      const url = `https://note-app-data.onrender.com/users`;
+      const data = await fetch(url);
+      const res = await data.json();
+      const valid = res.filter((item) => {
+        if (item.email === userData.email) {
+          alert("user exists!");
+          navigate("/logIn");
+          return item;
+        }
+      });
+      if (Object.keys(valid).length === 0) {
+        sendUserData(userData);
         navigate("/logIn");
-        return item;
       }
-    });
-    if(Object.keys(valid).length === 0){
-      sendUserData(userData);
-      navigate("/logIn");
-    }
-    setuserData(obj) ;
+      setuserData(obj);
     }
   };
-  const {firstName,lastName,email,password} = userData ;
+  const { firstName, lastName, email, password } = userData;
   const sendUserData = async (data) => {
     console.log(data);
-    const url = `https://note-app-data.onrender.com/users` ;
+    const url = `https://note-app-data.onrender.com/users`;
     await fetch(url, {
       method: "POST",
       body: JSON.stringify(data),

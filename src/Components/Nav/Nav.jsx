@@ -22,7 +22,6 @@ export default function Nav() {
   const auth = JSON.parse(localStorage.getItem("userAuth"));
 
   const userName = JSON.parse(localStorage.getItem("userData"));
-
   const logout = () => {
     localStorage.setItem("userAuth", JSON.stringify("false"));
     navigate("/login");
@@ -76,7 +75,7 @@ export default function Nav() {
                     </Center>
                     <br />
                     <Center>
-                      <p>user</p>
+                      <p>{userName.firstName}</p>
                     </Center>
                     <br />
                     <MenuDivider />
