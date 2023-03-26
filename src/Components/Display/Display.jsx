@@ -7,10 +7,12 @@ import {
   Grid,
   Flex,
   useColorModeValue,
+  useToast
 } from "@chakra-ui/react";
 
 export default function Display({ value }) {
   const [taskData, setdata] = useState([]);
+  const toast = useToast()
   useEffect(() => {
     getData();
   }, [value]);
@@ -26,6 +28,15 @@ export default function Display({ value }) {
   const color = useColorModeValue("black","white") ;
 
   const remove = async (id) => {
+    toast({
+      position: "top-right",
+        render: () => (
+          <Box m={3} color="white" p={3} bg="#0c4a6e">
+            Deleting note...
+          </Box>
+        ),
+        duration: 1500,
+    });
     await fetch(`https://note-app-data.onrender.com/note/${id}`, {
       method: "DELETE",
     });

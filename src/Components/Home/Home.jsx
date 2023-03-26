@@ -16,6 +16,7 @@ import {
   useDisclosure,
   Text,
   Textarea,
+  useToast
 } from "@chakra-ui/react";
 export default function Home() {
   const [count, setCount] = useState(0);
@@ -42,13 +43,13 @@ export default function Home() {
   ];
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast()
   const handleChange = (e) => {
     const time = getTime();
     setTask({ ...task, [e.target.name]: e.target.value, created: time });
   };
 
   const handleClick = () => {
-
     if (task.title.trimStart() === "") {
       alert("Please enter title");
       return;
@@ -56,25 +57,30 @@ export default function Home() {
       alert("Please enter body");
       return;
     } else {
+      toast({
+        position: "top",
+          render: () => (
+            <Box m={3} color="white" p={3} bg="#0c4a6e">
+              Note Created
+            </Box>
+          ),
+          duration: 2500,
+      });
       onClose();
       sendData(task);
       setTask(obj);
     }
-
   };
 
   function getTime() {
     const date = new Date();
     const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth());
+    const month = date.getMonth();
     const hours = date.getHours();
     const minutes = date.getMinutes();
     const currentMonth = monthNames[month];
     return `${day} ${currentMonth} ${hours}:${minutes}`;
   }
-
-  
-
 
   const sendData = async (task) => {
     const url = `https://note-app-data.onrender.com/note`;
@@ -85,7 +91,7 @@ export default function Home() {
         "Content-Type": "application/json",
       },
     });
-    setCount(count+1) ;
+    setCount(count + 1);
   };
 
   return (
@@ -143,7 +149,6 @@ export default function Home() {
       </Box>
 
       <Display value={count} fn={setCount} />
-
     </Box>
   );
 }
