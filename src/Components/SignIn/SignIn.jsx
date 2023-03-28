@@ -23,6 +23,7 @@ export default function SignIn() {
     lastName: "",
     email: "",
     password: "",
+    note :[] 
   };
   const [userData, setuserData] = useState(obj);
   const [showPassword, setShowPassword] = useState(false);
@@ -41,6 +42,7 @@ export default function SignIn() {
       const url = `https://note-app-data.onrender.com/users`;
       const data = await fetch(url);
       const res = await data.json();
+      console.log(res) ;
       const valid = res.filter((item) => {
         if (item.email === userData.email) {
           alert("user exists!");
@@ -57,7 +59,6 @@ export default function SignIn() {
   };
   const { firstName, lastName, email, password } = userData;
   const sendUserData = async (data) => {
-    console.log(data);
     const url = `https://note-app-data.onrender.com/users`;
     await fetch(url, {
       method: "POST",

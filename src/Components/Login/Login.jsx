@@ -36,6 +36,7 @@ export default function Login() {
     const url = `https://note-app-data.onrender.com/users`;
     const data = await fetch(url);
     const res = await data.json();
+    
     const valid = res.filter((item) => {
       if (item.email === userData.email) {
         localStorage.setItem("userAuth", JSON.stringify("true"));

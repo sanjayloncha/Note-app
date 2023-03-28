@@ -16,7 +16,7 @@ import {
   useDisclosure,
   Text,
   Textarea,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
 export default function Home() {
   const [count, setCount] = useState(0);
@@ -43,7 +43,7 @@ export default function Home() {
   ];
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const toast = useToast()
+  const toast = useToast();
   const handleChange = (e) => {
     const time = getTime();
     setTask({ ...task, [e.target.name]: e.target.value, created: time });
@@ -59,12 +59,12 @@ export default function Home() {
     } else {
       toast({
         position: "top",
-          render: () => (
-            <Box m={3} color="white" p={3} bg="#0c4a6e">
-              Note Created
-            </Box>
-          ),
-          duration: 2500,
+        render: () => (
+          <Box m={3} color="white" p={3} bg="#0c4a6e">
+            Note Created
+          </Box>
+        ),
+        duration: 2500,
       });
       onClose();
       sendData(task);
@@ -83,7 +83,7 @@ export default function Home() {
   }
 
   const sendData = async (task) => {
-    const url = `https://note-app-data.onrender.com/note`;
+    const url = `https://note-app-data.onrender.com/users`;
     await fetch(url, {
       method: "POST",
       body: JSON.stringify(task),

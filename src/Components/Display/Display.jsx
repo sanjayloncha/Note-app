@@ -7,37 +7,41 @@ import {
   Grid,
   Flex,
   useColorModeValue,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
 
 export default function Display({ value }) {
   const [taskData, setdata] = useState([]);
-  const toast = useToast()
+  const toast = useToast();
   useEffect(() => {
     getData();
   }, [value]);
+  
+  const userData = JSON.parse(localStorage.getItem("userData"));
 
   const getData = async () => {
-    const url = `https://note-app-data.onrender.com/note`;
+    const url = `https://note-app-data.onrender.com/users/${userData.id}`;
     const data = await fetch(url);
     const res = await data.json();
-    setdata(res);
+    console.log(res) ;
+    console.log(userData.note) ;
+    setdata(userData.note);
   };
 
-  const bg = useColorModeValue("#bae6fd", "#0c4a6e") ;
-  const color = useColorModeValue("black","white") ;
+  const bg = useColorModeValue("#bae6fd", "#0c4a6e");
+  const color = useColorModeValue("black", "white");
 
   const remove = async (id) => {
     toast({
       position: "top-right",
-        render: () => (
-          <Box m={3} color="white" p={3} bg="#0c4a6e">
-            Deleting note...
-          </Box>
-        ),
-        duration: 1500,
+      render: () => (
+        <Box m={3} color="white" p={3} bg="#0c4a6e">
+          Deleting note...
+        </Box>
+      ),
+      duration: 1500,
     });
-    await fetch(`https://note-app-data.onrender.com/note/${id}`, {
+    await fetch(`https://note-app-data.onrender.com/users/${id}`, {
       method: "DELETE",
     });
     getData();
@@ -54,7 +58,6 @@ export default function Display({ value }) {
       w="90%"
       m="20px auto"
       gap={6}
-      
     >
       {taskData.map((item) => {
         return (
@@ -89,4 +92,3 @@ export default function Display({ value }) {
     </Grid>
   );
 }
-
