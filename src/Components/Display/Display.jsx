@@ -23,8 +23,6 @@ export default function Display({ value }) {
     const url = `https://note-app-data.onrender.com/users/${userData.id}`;
     const data = await fetch(url);
     const res = await data.json();
-    console.log(res) ;
-    console.log(userData.note) ;
     setdata(userData.note);
   };
 

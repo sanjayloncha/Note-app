@@ -36,20 +36,23 @@ export default function Login() {
     const url = `https://note-app-data.onrender.com/users`;
     const data = await fetch(url);
     const res = await data.json();
-    
     const valid = res.filter((item) => {
-      if (item.email === userData.email) {
+      if (
+        item.email === userData.email &&
+        item.password === userData.password
+      ) {
         localStorage.setItem("userAuth", JSON.stringify("true"));
         localStorage.setItem("userData", JSON.stringify(item));
         navigate("/home");
         return item;
       }
     });
-
     if (Object.keys(valid).length === 0) {
       alert("In valid credentials");
     }
+
   };
+
 
   const { email, password } = userData;
 
