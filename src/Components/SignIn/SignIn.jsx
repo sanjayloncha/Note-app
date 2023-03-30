@@ -42,7 +42,6 @@ export default function SignIn() {
       const url = `https://note-app-data.onrender.com/users`;
       const data = await fetch(url);
       const res = await data.json();
-      console.log(res) ;
       const valid = res.filter((item) => {
         if (item.email === userData.email) {
           alert("user exists!");
