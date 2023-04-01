@@ -17,31 +17,28 @@ export default function Display({ value }) {
     getData();
   }, [value]);
   
-  const userData = JSON.parse(localStorage.getItem("userData"));
-
+ 
   const getData = async () => {
-    const url = `https://note-app-data.onrender.com/users/${userData.id}`;
-    const data = await fetch(url);
-    const res = await data.json();
+    const userData = JSON.parse(localStorage.getItem("userData"));
     setdata(userData.note);
   };
 
   const bg = useColorModeValue("#bae6fd", "#0c4a6e");
   const color = useColorModeValue("black", "white");
 
-  const remove = async (id) => {
+  const remove = (id) => {
+    let userData = JSON.parse(localStorage.getItem("userData"));
+    userData.note.splice(id,1) ;
     toast({
       position: "top-right",
       render: () => (
         <Box m={3} color="white" p={3} bg="#0c4a6e">
-          Deleting note...
+          Note deleted...
         </Box>
       ),
-      duration: 1500,
+      duration: 1000,
     });
-    await fetch(`https://note-app-data.onrender.com/users/${id}`, {
-      method: "DELETE",
-    });
+    localStorage.setItem("userData", JSON.stringify(userData));
     getData();
   };
 
@@ -57,9 +54,9 @@ export default function Display({ value }) {
       m="20px auto"
       gap={6}
     >
-      {taskData.map((item) => {
+      {taskData.map((item,index) => {
         return (
-          <GridItem h="10" m="0px" height="auto" key={item.id}>
+          <GridItem h="10" m="0px" height="auto" key={index}>
             <Box
               bg={bg}
               // color={useColorModeValue('white', 'black')}>
@@ -77,7 +74,7 @@ export default function Display({ value }) {
               <Flex justifyContent="space-between" alignItems="center">
                 <Text ml="5px">created on : {item.created}</Text>
                 <lord-icon
-                  onClick={() => remove(item.id)}
+                  onClick={() => remove(index)}
                   src="https://cdn.lordicon.com/gsqxdxog.json"
                   trigger="hover"
                   style={{ width: "40px" }}

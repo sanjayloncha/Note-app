@@ -64,7 +64,7 @@ export default function Home() {
             Note Created
           </Box>
         ),
-        duration: 2500,
+        duration: 1500,
       });
       onClose();
       sendData(task);
@@ -83,14 +83,12 @@ export default function Home() {
   }
 
   const sendData = async (task) => {
-    const url = `https://note-app-data.onrender.com/users`;
-    await fetch(url, {
-      method: "POST",
-      body: JSON.stringify(task),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    let userData = JSON.parse(localStorage.getItem("userData"));
+    userData.note.push(task);
+
+    localStorage.setItem("userData", JSON.stringify(userData));
+    let newUserData = JSON.parse(localStorage.getItem("userData"));
+    console.log(newUserData) ;
     setCount(count + 1);
   };
 
