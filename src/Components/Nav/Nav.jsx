@@ -23,6 +23,7 @@ export default function Nav() {
   
   const logout = () => {
     localStorage.setItem("userAuth", JSON.stringify("false"));
+    localStorage.removeItem('userData');
     navigate("/login");
   };
   const { colorMode, toggleColorMode } = useColorMode();

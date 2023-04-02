@@ -87,8 +87,6 @@ export default function Home() {
     userData.note.push(task);
 
     localStorage.setItem("userData", JSON.stringify(userData));
-    let newUserData = JSON.parse(localStorage.getItem("userData"));
-    console.log(newUserData) ;
     setCount(count + 1);
   };
 
