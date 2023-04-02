@@ -15,16 +15,22 @@ import {
   Center,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import axios from "axios";
 
 export default function Nav() {
   const navigate = useNavigate();
   const auth = JSON.parse(localStorage.getItem("userAuth"));
   const userName = JSON.parse(localStorage.getItem("userData"));
-  
+  const axios = require('axios');
+
   const logout = () => {
-    localStorage.setItem("userAuth", JSON.stringify("false"));
-    localStorage.removeItem('userData');
-    navigate("/login");
+    // localStorage.setItem("userAuth", JSON.stringify("false"));
+    // localStorage.removeItem('userData');
+    // navigate("/login");
+    const userName = JSON.parse(localStorage.getItem("userData"));
+    console.log(userName) ;
+    console.log("testing");
+
   };
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = useColorModeValue("#bae6fd", "#0c4a6e");
