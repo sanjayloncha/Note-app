@@ -21,25 +21,33 @@ export default function Nav() {
   const navigate = useNavigate();
   const auth = JSON.parse(localStorage.getItem("userAuth"));
   const userName = JSON.parse(localStorage.getItem("userData"));
-  const axios = require('axios');
+  const axios = require("axios");
 
   const logout = () => {
-    // localStorage.setItem("userAuth", JSON.stringify("false"));
-    // localStorage.removeItem('userData');
-    // navigate("/login");
     const userName = JSON.parse(localStorage.getItem("userData"));
-    const userData = getData() ;
-    userData.then((resolve)=>{
-      const index = resolve.findIndex(obj => obj.email === userName.email);
-      console.log(resolve[index]) ;
-    })
-    console.log(userName) ;
+    updateData(userName);
+    localStorage.setItem("userAuth", JSON.stringify("false"));
+    localStorage.removeItem("userData");
+    navigate("/login");
   };
-  const getData = async()=>{
-    let data = await fetch(`https://note-app-data.onrender.com/users`);
-    let res = await data.json();
-    return res ;
-  }
+
+  const updateData = async (userName) => {
+    try {
+      const response = await fetch(
+        `https://note-app-data.onrender.com/users/` + userName.id,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userName),
+        }
+      );
+      const data = await response.json();
+    } catch (error) {
+      console.error("Error replacing object:", error);
+    }
+  };
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = useColorModeValue("#bae6fd", "#0c4a6e");
   return (
