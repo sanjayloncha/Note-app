@@ -82,7 +82,7 @@ export default function Home() {
     return `${day} ${currentMonth} ${hours}:${minutes}`;
   }
 
-  const sendData = async (task) => {
+  const sendData = (task) => {
     let userData = JSON.parse(localStorage.getItem("userData"));
     userData.note.push(task);
     localStorage.setItem("userData", JSON.stringify(userData));
@@ -142,7 +142,7 @@ export default function Home() {
         ></lord-icon>
         <Text> Add Note </Text>
       </Box>
-
+    
       <Display value={count} fn={setCount} />
     </Box>
   );

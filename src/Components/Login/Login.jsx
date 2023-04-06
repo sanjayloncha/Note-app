@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 
 import {
@@ -32,27 +33,30 @@ export default function Login() {
     }
   };
 
-  const getUserData = async () => {
+  const getUserData = () => {
     const url = `https://note-app-data.onrender.com/users`;
-    const data = await fetch(url);
-    const res = await data.json();
-    const valid = res.filter((item) => {
-      if (
-        item.email === userData.email &&
-        item.password === userData.password
-      ) {
-        localStorage.setItem("userAuth", JSON.stringify("true"));
-        localStorage.setItem("userData", JSON.stringify(item));
-        navigate("/home");
-        return item;
-      }
-    });
-    if (Object.keys(valid).length === 0) {
-      alert("In valid credentials");
-    }
-
+    const data = axios
+      .get(url)
+      .then((res) => {
+        const valid = res.data.filter((item) => {
+          if (
+            item.email === userData.email &&
+            item.password === userData.password
+          ) {
+            localStorage.setItem("userAuth", JSON.stringify("true"));
+            localStorage.setItem("userData", JSON.stringify(item));
+            navigate("/home");
+            return item;
+          }
+        });
+        if (Object.keys(valid).length === 0) {
+          alert("In valid credentials");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
-
 
   const { email, password } = userData;
 
