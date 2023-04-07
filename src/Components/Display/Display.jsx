@@ -36,7 +36,7 @@ export default function Display({ value }) {
           Note deleted...
         </Box>
       ),
-      duration: 1000,
+      duration: 1500,
     });
     localStorage.setItem("userData", JSON.stringify(userData));
     getData();

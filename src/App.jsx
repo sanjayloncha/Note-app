@@ -14,10 +14,17 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<SignIn />} />
-        <Route path="/home" element={<Private> <Home /> </Private>} />
+        <Route
+          path="/home"
+          element={
+            <Private>
+              {" "}
+              <Home />{" "}
+            </Private>
+          }
+        />
         <Route path="/logIn" element={<LogIn />} />
       </Routes>
-      {/* <View/> */}
     </Box>
   );
 }
